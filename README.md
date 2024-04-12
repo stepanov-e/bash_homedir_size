@@ -6,4 +6,4 @@ chmod +x userdir
 
 crontab -e
 
-0 */3 * * * /path/userdir
+0 */3 * * * bash /path/userdir
