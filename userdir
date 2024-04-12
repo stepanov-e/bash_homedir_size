@@ -1,0 +1,21 @@
+#!/bin/bash
+
+script_path=$(readlink -f "$0")
+script_dir=$(dirname "$script_path")
+userDirArr=()
+
+
+while read userDir
+do
+    userDirArr+=("$userDir")
+done < <(find /home -mindepth 1 -maxdepth 1 -type d)
+
+
+for directory in ${userDirArr[@]}; do
+  sizeDir=$(du -sh $directory)
+  dateTime=$(date +"%d.%m.%Y  %H:%M:%S")
+  echo $dateTime $sizeDir >> $script_dir/usersdir.log
+  echo '<div><p style="margin: 0"><b>'$dateTime'</b>' $sizeDir'</p></div>' >> $script_dir/usersdir.html
+done
+
+cp $script_dir/usersdir.html /var/www/html/
