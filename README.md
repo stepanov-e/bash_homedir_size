@@ -1,2 +1,6 @@
-# bash_homedir_size
-bash script for calculating the size of home directories
+Установить права на запуск
+chmod +x userdir
+
+прописать в кроне
+crontab -e
+0 */3 * * * /path/userdir
